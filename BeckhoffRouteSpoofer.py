@@ -8,7 +8,7 @@ iPORT = 48898
 iTIMEOUT = 1
 
 try:
-    import sys, socket, binascii, os, subprocess, re, struct, time, _thread, random
+    import sys, socket, binascii, os, subprocess, re, struct, time, _thread, random, logging
     #from threading import Thread
     from ctypes import CDLL, POINTER, Structure, c_void_p, c_char_p, c_ushort, c_char, c_long, c_int, c_uint, c_ubyte, byref, create_string_buffer, util
 except Exception as e:
@@ -27,6 +27,7 @@ try:
     conf.ipv6_enabled = False
     import scapy.all as scapy
     scapy.conf.verb = 0
+    logging.getLogger('scapy.runtime').setLevel(logging.ERROR)
 except:
     print('Error while loading scapy, please run "pip install scapy"')
     sys.exit(1)
