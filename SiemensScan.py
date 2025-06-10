@@ -33,7 +33,7 @@ r'''
         It also performs detailed scanning using S7Comm.
         Furthermore, this script reads inputs AND writes & reads outputs.
 '''
-import os, sys, re, time, string, struct, socket
+import os, sys, re, time, string, struct, socket, threading
 from subprocess import Popen, PIPE
 from multiprocessing.pool import ThreadPool
 from binascii import hexlify, unhexlify
@@ -791,23 +791,37 @@ def changeCPU(device):
 
 def scanNetwork(sAdapter, sMacaddr, sWinguid):
     ## We use Pcap, so we need the Pcap device (for Windows: \Device\NPF_{GUID}, for Linux: 'eth0')
-    if os.name == 'nt': sAdapter = r'\Device\NPF_' + sWinguid
+    if os.name == 'nt': 
+        sAdapter = r'\Device\NPF_' + sWinguid
     #print('Using adapter ' + sAdapter + '\n')
     bNpfdevice = sAdapter.encode()
+    
+    ## Prepare container for received packets
+    receivedDataArr = []
 
-    ## Start building discovery packet
-    print('Building packet')
+    ## Define background capture function
+    def _recv():
+        receivedDataArr.extend(receiveRawPackets(bNpfdevice, iDiscoverTimeout, sMacaddr, '8892'))
+
+    ## Start background capture thread
+    t = threading.Thread(target=_recv)
+    t.start()
+
+    ## Short delay to ensure capture is running before sending
+    time.sleep(0.05)
 
     ## Sending the raw packet (packet itself is returned) (8100 == PN_DCP, 88cc == LDP)
     packet = sendRawPacket(bNpfdevice, '8100', sMacaddr)
     print('\nPacket has been sent (' + str(len(packet)) + ' bytes)')
 
-    ## Receiving packets as bytearr (88cc == LDP, 8892 == device PN_DCP)
+    ## Wait for capture thread to finish
+    t.join()
+
     print('\nReceiving packets over ' + str(iDiscoverTimeout) + ' seconds ...\n')
-    receivedDataArr = receiveRawPackets(bNpfdevice, iDiscoverTimeout, sMacaddr, '8892')
     print()
     print('\nSaved ' + str(len(receivedDataArr)) + ' packets')
-    print()
+    print() 
+
     return receivedDataArr, bNpfdevice
 
 def parseData(receivedDataArr):
