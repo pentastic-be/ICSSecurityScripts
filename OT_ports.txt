@@ -1,0 +1,97 @@
+-n -sT -p 21,22,23,80,102,139,443,445,502,789,802,987,1089-1091,1153,1200,1520,1911,1962,2404,2455,3011,4011,4059,4712,4840,4843,4852,4911,5000,5007,5094,5800,5900,6626,8016,8080,8193,9600,13400,18245,20000,20547,30490,34962-34964,41100,44818,48898 --open
+
+
+-n -sU -p 53,67,69,137,138,161,502,1089-1091,1153,1234,1628,1629,2222,3250,3671,3956,4059,4713,4840,5094,6060,9600,20000,20202,34962-34964,34980,34962-34964,47808,44818,55000-55003 --open
+
+TCP
+
+21/tcp - ftp
+22/tcp - ssh
+23/tcp - telnet
+80/tcp - http
+102/tcp - ICCP, S7comm (or ICCP, IEC104, MMS)
+139/tcp - SMB Netbios
+443/tcp - https
+445/tcp - SMB
+502/tcp - Modbus TCP
+789/tcp - Crimson
+802/tcp - Modbus TLS
+987/tcp - Beckhoff CerHost
+1089/tcp - FF-HSE
+1090/tcp - FF-HSE
+1091/tcp - FF-HSE
+1153/tcp - ANSI-C12.22
+1200/tcp - CODESYS
+1520/tcp - LIS
+1911/tcp - Niagara Fox
+1962/tcp - Phoenix Contact info retrieval
+2404/tcp - IEC-60870-5-104
+2455/tcp - CODESYS Wago
+3011/tcp - Niagara Fox
+4011/tcp - Niagara Fox
+4059/tcp - DLMS/COSEM
+4712/tcp - IEE C37.118
+4840/tcp - OPC-UA
+4843/tcp - OPC-UA (TLS)
+4852/tcp - OPC-UA (Belckhoff)
+4911/tcp - Niagara Fox
+5000/tcp - SECS/GEM (HSMS)
+5007/tcp - MELSEC
+5094/tcp - HART-IP
+5800/tcp - VNC http
+5900/tcp - VNC
+6626/tcp - WAGO CONFIG
+8016/tcp - Secure ADS Twincat
+8080/tcp - http alternative
+8193/tcp - FOCAS
+9600/tcp - FINS
+13400/tcp - DoIP
+18245/tcp - GE-SRTP
+20000/tcp - DNP3
+20547/tcp - ProConOs
+30490/tcp - SOME/IP
+34962/tcp - Profinet
+34963/tcp - Profinet
+34964/tcp - Profinet
+41100/tcp - Phoenix Contact
+44818/tcp - Ethernet/IP
+48898/tcp - ADS
+
+UDP
+
+53/udp - DNS
+67/udp - DHCP
+69/udp - TFTP
+137/udp - NetBT NBNS
+128/udp - NetBT NDS
+161/udp - SNMP
+502/udp - Modbus UDP
+1089/udp - FF-HSE
+1090/udp - FF-HSE
+1091/udp - FF-HSE
+1153/udp - ANSI-C12.22
+1234/udp - BSAP
+1628/udp - LonTalk
+1629/udp - LonTalk
+2222/udp - Ethernet/IP
+3250/udp - HICP
+3671/udp - KNXnet/IP
+3956/udp - GVCP
+4059/udp - DLMS/COSEM
+4713/udp - IEE C37.118
+4840/udp - OPC-UA
+5094/udp - HART-IP
+6060/udp - Ether-S-I/O
+9600/udp - FINS
+20000/udp - DNP3
+20202/udp - GVSP
+34962/udp - Profinet-IO
+34963/udp - Profinet-IO
+34964/udp - Profinet-IO
+34980/udp - EtherCAT
+47808/udp - BACnet/IP
+44818/udp - Ethernet/IP
+55000/udp - FL-net
+55001/udp - FL-net
+55002/udp - FL-net
+55003/udp - FL-net
