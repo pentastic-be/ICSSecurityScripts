@@ -18,3 +18,4 @@ Added:
 * Basic Hirschmann scan using LLC
 * Modified Omron with Link Local ip
 * Modified Siemensscan to include more responses
+* Common OT ports to scan
